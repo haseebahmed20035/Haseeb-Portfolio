@@ -121,8 +121,8 @@ export const projects = [
     description:
       "An agentic AI web app that converts PowerPoint, PDF, and image files into study notes, summaries, exam questions, and solved case scenarios. An agent detects the file type, routes to the right extractor (with OCR for scanned files), and selects the AI task. Large files are processed in chunks for full coverage, and it is containerized with Docker and deployed on Hugging Face Spaces.",
     // OPTIONAL: add your live demo and repo links here (leave "" to hide the button)
-    live: "",
-    repo: "https://github.com/haseebahmed20035",
+    live: "https://huggingface.co/spaces/haseebahmed2003/ai-notes-generator",
+    repo: "",
   },
   {
     name: "UOL Transportation App",
@@ -131,7 +131,7 @@ export const projects = [
     description:
       "A full-stack university transport management system for the University of Lahore with independent Admin, Student, and Driver modules. Features live bus tracking, route and stop management, transport request handling, attendance, and OTP-based authentication, backed by a normalized MySQL database with 9+ tables.",
     live: "",
-    repo: "https://github.com/haseebahmed20035",
+    repo: "https://github.com/haseebahmed20035/UOL-Transportation-Frontend",
   },
 ];
 
