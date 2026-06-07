@@ -84,7 +84,7 @@ export const skills = [
     ],
   },
   {
-    category: "Tools & DevOps",
+    category: "Tools",
     items: [
       "Git",
       "GitHub",
