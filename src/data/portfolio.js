@@ -144,7 +144,7 @@ export const projects = [
 },
 ];
 
-// ----- Education timeline (EDIT THESE) -----
+// ----- Education timeline -----
 export const education = [
   {
     degree: "BS Computer Science",
