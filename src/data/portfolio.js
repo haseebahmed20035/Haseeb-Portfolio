@@ -136,9 +136,9 @@ export const projects = [
   {
   name: "AI Interview Coach Agent",
   tagline: "Agentic AI",
-  tech: ["Python", "Streamlit", "Gemini/Groq API", "SQLite", "ReportLab", "Hugging Face Spaces"],
+  tech: ["Python", "Streamlit", "Gemini", "ReportLab", "Hugging Face Spaces"],
   description:
-    "A multi-agent (agentic AI) platform that simulates real technical and HR interviews. Specialized agents generate role-based questions, manage the interview flow, evaluate answers on correctness, clarity, completeness, and technical accuracy, and produce a final performance report with strengths, weaknesses, and personalized improvement recommendations. Includes multiple difficulty levels, SQLite-based session history, and downloadable PDF reports generated with ReportLab, deployed on Hugging Face Spaces using free, open-source tools.",
+    "A multi-agent (agentic AI) platform that simulates real technical and HR interviews. Specialized agents generate role-based questions, manage the interview flow, evaluate answers on correctness, clarity, completeness, and technical accuracy, and produce a final performance report with strengths, weaknesses, and personalized improvement recommendations. Includes downloadable PDF reports generated with ReportLab, deployed on Hugging Face Spaces.",
   live: "https://huggingface.co/spaces/haseebahmed2003/ai-interview-coach-agent",
   repo: "https://github.com/haseebahmed20035/ai-interview-coach-agent",
 },
