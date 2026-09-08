@@ -142,6 +142,13 @@ export const projects = [
 // ----- Education timeline -----
 export const education = [
   {
+    degree: "MS Artificial Intelligence Engineering",
+    school: "Comsats University Islamabad",
+    location: "Lahore, Pakistan",
+    period: "2026 – 2028",
+    detail: "",
+  },
+  {
     degree: "BS Computer Science",
     school: "The University of Lahore",
     location: "Lahore, Pakistan",
