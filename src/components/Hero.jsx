@@ -3,8 +3,10 @@ import {
   motion,
   AnimatePresence,
   useReducedMotion,
+  useScroll,
   useMotionValue,
   useSpring,
+  useTransform,
 } from "framer-motion";
 import { FiGithub, FiLinkedin, FiMail, FiArrowDown, FiDownload } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
@@ -59,6 +61,16 @@ function Magnetic({ children, strength = 0.35 }) {
 
 export default function Hero() {
   const prefersReducedMotion = useReducedMotion();
+  const heroRef = useRef(null);
+  const { scrollYProgress: heroScroll } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+  const heroY = useTransform(heroScroll, [0, 1], [0, -110]);
+  const heroOpacity = useTransform(heroScroll, [0, 0.72, 1], [1, 0.88, 0]);
+  const heroScale = useTransform(heroScroll, [0, 1], [1, 0.96]);
+  const portraitScrollY = useTransform(heroScroll, [0, 1], [0, 145]);
+  const portraitScale = useTransform(heroScroll, [0, 1], [1, 1.07]);
 
   // Cycle through the rotating job titles.
   const [titleIndex, setTitleIndex] = useState(0);
@@ -105,6 +117,7 @@ export default function Hero() {
 
   return (
     <section
+      ref={heroRef}
       id="home"
       onMouseMove={handleParallax}
       className="relative flex min-h-screen items-center justify-center overflow-hidden px-6"
@@ -132,28 +145,42 @@ export default function Hero() {
         style={{ x: orbX, y: orbY }}
         className="pointer-events-none absolute inset-0 z-[1] overflow-hidden"
       >
-        <motion.img
-          src="/haseeb-portrait.png"
-          alt=""
-          width="1024"
-          height="1536"
-          loading="eager"
-          fetchPriority="high"
-          animate={
+        <motion.div
+          style={
             prefersReducedMotion
               ? undefined
-              : { y: [0, -18, 0], rotate: [-0.8, 0.8, -0.8] }
+              : { y: portraitScrollY, scale: portraitScale }
           }
-          transition={{
-            duration: 8,
-            ease: "easeInOut",
-            repeat: Infinity,
-          }}
-          className="hero-portrait absolute bottom-[-8%] left-1/2 h-[72vh] w-auto max-w-none -translate-x-1/2 object-contain sm:bottom-[-12%] sm:h-[82vh] lg:bottom-[-9%] lg:left-auto lg:right-[-3%] lg:h-[96vh] lg:translate-x-0"
-        />
+          className="absolute inset-0"
+        >
+          <motion.img
+            src="/haseeb-portrait.png"
+            alt=""
+            width="1024"
+            height="1536"
+            loading="eager"
+            fetchPriority="high"
+            animate={
+              prefersReducedMotion
+                ? undefined
+                : { y: [0, -18, 0], rotate: [-0.8, 0.8, -0.8] }
+            }
+            transition={{
+              duration: 8,
+              ease: "easeInOut",
+              repeat: Infinity,
+            }}
+            className="hero-portrait absolute bottom-[-8%] left-1/2 h-[72vh] w-auto max-w-none -translate-x-1/2 object-contain sm:bottom-[-12%] sm:h-[82vh] lg:bottom-[-9%] lg:left-auto lg:right-[-3%] lg:h-[96vh] lg:translate-x-0"
+          />
+        </motion.div>
       </motion.div>
 
       <motion.div
+        style={
+          prefersReducedMotion
+            ? undefined
+            : { y: heroY, opacity: heroOpacity, scale: heroScale }
+        }
         variants={container}
         initial="hidden"
         animate="show"
