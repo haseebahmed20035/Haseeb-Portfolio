@@ -127,6 +127,55 @@ body {
   pointer-events: none;
 }
 
+/* Hero portrait sits behind the copy with a soft sci-fi edge treatment. */
+.hero-portrait {
+  opacity: 0.12;
+  filter: saturate(0.82) contrast(1.05)
+    drop-shadow(0 0 30px rgb(var(--primary) / 0.18));
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 13%,
+    black 78%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    black 13%,
+    black 78%,
+    transparent 100%
+  );
+}
+
+html.light .hero-portrait {
+  opacity: 0.1;
+  filter: saturate(0.72) contrast(0.96)
+    drop-shadow(0 0 30px rgb(var(--primary) / 0.12));
+}
+
+@media (min-width: 1024px) {
+  .hero-portrait {
+    opacity: 0.24;
+    -webkit-mask-image: linear-gradient(
+      to left,
+      black 42%,
+      rgb(0 0 0 / 0.85) 66%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to left,
+      black 42%,
+      rgb(0 0 0 / 0.85) 66%,
+      transparent 100%
+    );
+  }
+
+  html.light .hero-portrait {
+    opacity: 0.2;
+  }
+}
+
 /* Respect users who prefer less motion */
 @media (prefers-reduced-motion: reduce) {
   *,

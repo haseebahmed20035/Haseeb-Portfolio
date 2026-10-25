@@ -2,6 +2,7 @@ import { useEffect, useState, useRef, lazy, Suspense } from "react";
 import {
   motion,
   AnimatePresence,
+  useReducedMotion,
   useMotionValue,
   useSpring,
 } from "framer-motion";
@@ -57,6 +58,8 @@ function Magnetic({ children, strength = 0.35 }) {
 }
 
 export default function Hero() {
+  const prefersReducedMotion = useReducedMotion();
+
   // Cycle through the rotating job titles.
   const [titleIndex, setTitleIndex] = useState(0);
   useEffect(() => {
@@ -122,6 +125,33 @@ export default function Hero() {
         style={{ x: orbY, y: orbX }}
         className="pointer-events-none absolute bottom-1/4 right-1/4 h-72 w-72 translate-x-1/2 rounded-full bg-accent/15 blur-[120px]"
       />
+
+      {/* Animated portrait layer: subtle enough to stay behind the hero copy. */}
+      <motion.div
+        aria-hidden="true"
+        style={{ x: orbX, y: orbY }}
+        className="pointer-events-none absolute inset-0 z-[1] overflow-hidden"
+      >
+        <motion.img
+          src="/haseeb-portrait.png"
+          alt=""
+          width="1024"
+          height="1536"
+          loading="eager"
+          fetchPriority="high"
+          animate={
+            prefersReducedMotion
+              ? undefined
+              : { y: [0, -18, 0], rotate: [-0.8, 0.8, -0.8] }
+          }
+          transition={{
+            duration: 8,
+            ease: "easeInOut",
+            repeat: Infinity,
+          }}
+          className="hero-portrait absolute bottom-[-8%] left-1/2 h-[72vh] w-auto max-w-none -translate-x-1/2 object-contain sm:bottom-[-12%] sm:h-[82vh] lg:bottom-[-9%] lg:left-auto lg:right-[-3%] lg:h-[96vh] lg:translate-x-0"
+        />
+      </motion.div>
 
       <motion.div
         variants={container}
